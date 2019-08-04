@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  brend,: MyString
+  model,: MyString
+  description: 
+  condition,: MyString
+  finish,: MyString
+  price: 
+  user: one
+
+two:
+  brend,: MyString
+  model,: MyString
+  description: 
+  condition,: MyString
+  finish,: MyString
+  price: 
+  user: two
