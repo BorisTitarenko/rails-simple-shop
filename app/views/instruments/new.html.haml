@@ -1,1 +1,19 @@
-
+= form_for @instrument do |f|
+  .container
+    .field
+      = f.label :image
+      = f.file_field :image
+    .field
+      = f.select :brand, options_for_select(Instrument::BRAND), prompt: "Select brand"
+      = f.label :model
+      = f.text_field :model
+    .field
+      = f.label :description
+      = f.text_area :description
+    .field
+      = f.select :finish, options_for_select(Instrument::FINISH), prompt: "Select finish"
+      = f.select :condition, options_for_select(Instrument::CONDITION), prompt: "Select condition"
+    .field
+      = f.label :price
+      = f.text_field :price
+    = f.submit "Create product"
