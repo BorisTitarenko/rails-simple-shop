@@ -32,6 +32,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'bootstrap'
 gem 'devise'
 gem 'gravatar_image_tag'
+gem 'haml', '~> 5.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
