@@ -1,1 +1,7 @@
-
+.card-columns
+  - @instruments.each do |ins|
+    .card
+      .card-body.p-1
+        = image_tag ins.image.variant(resize: "400x400"), class: "d-block h-100 w-100"
+        = link_to ins.brand + " " + ins.model, instruments_path(ins)
+        = number_to_currency(ins.price)
