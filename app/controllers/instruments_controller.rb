@@ -2,7 +2,7 @@ class InstrumentsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @instruments = Instrument.all.order("created_at desc")
+    @instruments = Instrument.where(status: 'active').order("created_at desc")
   end
 
   def new
@@ -15,10 +15,18 @@ class InstrumentsController < ApplicationController
 
   def create
     @instrument = current_user.instruments.new(instrument_params)
+    @instrument.status = 'active'
     if @instrument.save
       redirect_to root_path
     else
       redirect_to new_instruments_path
+    end
+  end
+
+  def destroy
+    @instrument = current_user.instruments.find(params[:id])
+    if @instrument
+      @instrument.destroy
     end
   end
 

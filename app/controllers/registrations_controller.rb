@@ -1,4 +1,7 @@
+load "current_cart"
 class RegistrationsController < Devise::RegistrationsController
+  include SetCart
+  before_action :current_cart
 
   private
 

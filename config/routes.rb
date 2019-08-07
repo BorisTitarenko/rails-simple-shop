@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
-    registrations: 'registrations'
+    registrations: 'registrations',
+    sessions: 'sessions'
   }
   root to: 'instruments#index'
   resources :instruments
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :sales, only: ['index', 'update', 'destroy'], path: "user/sales/"
+  #get 'users/cart', to: 'order_items#index', as: :cart
+  get 'user/cart/checkout', to: 'orders#checkout', as: :checkout
+
+  patch 'user/cart/checkout', to: 'orders#create'
+
+  get 'user/cart/history', to: 'orders#index', as: :history
+
+
+  resources :order_items, path: "users/cart/"
+
 end

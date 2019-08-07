@@ -4,4 +4,7 @@
       .card-body.p-1
         = image_tag ins.image.variant(resize: "400x400"), class: "d-block h-100 w-100"
         = link_to ins.brand + " " + ins.model, instrument_path(ins)
-        = number_to_currency(ins.price)
+        %br
+          = number_to_currency(ins.price)
+        = link_to "Edit", edit_instrument_path(ins), class: "btn btn-outline-secondary mr-5 mt-5"
+        = link_to "Delete", instruments_path(ins), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger ml-5 mt-5"
