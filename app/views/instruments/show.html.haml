@@ -1,0 +1,42 @@
+.row
+  .col
+    .card.w-40
+      .card-body
+        = image_tag @instrument.image, class: "block-center w-100"
+        .card-title
+          %br
+            = "#{@instrument.brand} #{@instrument.model}"
+        .card-text
+          %table.table
+            %tbody
+              %tr
+                %th.row Brand
+                %td
+                  = @instrument.brand
+              %tr
+                %th.row Model
+                %td
+                  = @instrument.model
+              %tr
+                %th.row Condition
+                %td
+                  = @instrument.condition
+              %tr
+                %th.row Finish
+                %td
+                  = @instrument.finish
+          %p.ml-1
+            = @instrument.description
+          - if user_signed_in? && @instrument.user_id == current_user.id
+            = link_to "Edit", edit_instrument_path(@instrument), class: "btn btn-light"
+            = link_to "Delete", instrument_path(@instrument), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"
+
+  - if @instrument.status == 'active'
+    .col
+      .card
+        .card-body
+          = number_to_currency(@instrument.price)
+          %hr
+          = form_tag order_items_path do
+            = hidden_field_tag :instrument_id, @instrument.id
+            = submit_tag "Add to cart",  class: "btn btn-success"

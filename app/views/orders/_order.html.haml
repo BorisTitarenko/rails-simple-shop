@@ -1,0 +1,14 @@
+.col
+  %table
+    %thead
+      %tr
+        %td Instrument
+        %td Price
+        %td
+    %tbody
+      - order.order_items.each do |item|
+
+        %tr
+          - instrument = item.instrument
+          %td= link_to instrument.brand, instrument_path(instrument)
+          %td= number_to_currency item.price

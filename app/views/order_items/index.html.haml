@@ -1,0 +1,27 @@
+%h2 Current Cart
+.row
+  .col
+    %table
+      %thead
+        %tr
+          %td Instrument
+          %td Price
+          %td
+      %tbody
+        - @order_items.each do |item|
+          %tr
+            %td= link_to item.instrument.brand, instrument_path(item.instrument)
+            %td= number_to_currency item.price
+            %td
+              = form_for item, method: :delete do |f|
+                = f.submit "Remove", class: "btn btn-danger"
+      %tfoot
+        %tr
+          %td( align="right")
+            = number_to_currency current_cart.order.sub_total
+        %tr
+          %td( align="right")
+            - if @order_items.count > 0
+              = link_to "Checkout", checkout_path, class: "btn btn-primary"
+  .col
+    = link_to "History", history_path, class: "btn btn-info"

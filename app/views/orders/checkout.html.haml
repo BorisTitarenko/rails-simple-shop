@@ -1,0 +1,10 @@
+= form_for @order, url: checkout_path do |o|
+  %br
+    = o.label :name
+  = o.text_field :name, value: @order.user.name
+  %br
+    = o.label :adress
+  = o.text_field :adress
+  %br
+    = number_to_currency(@order.sub_total)
+  = o.submit "Checkout", class: "btn btn-success"
