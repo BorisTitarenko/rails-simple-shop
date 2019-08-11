@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 *.jpg
+
+.idea/workspace.xml
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
