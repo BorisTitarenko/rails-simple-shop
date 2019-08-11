@@ -14,7 +14,6 @@ class OrderItem < ApplicationRecord
     if OrderItem.where(order_id: self.order_id).empty?
       self.order.update_attributes(status: 'empty')
     end
-
   end
 
 end
