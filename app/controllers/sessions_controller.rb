@@ -6,8 +6,10 @@ class SessionsController < Devise::SessionsController
 
   def after_login
     last = current_user.orders&.last
-    if last.status == 'empty' || last.status == 'cart'
-      session[:cart_token] = last.token
+    if last
+      if last.status == 'empty' || last.status == 'cart'
+        session[:cart_token] = last.token
+      end
     end
   end
 end

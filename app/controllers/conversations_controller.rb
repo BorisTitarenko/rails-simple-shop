@@ -7,8 +7,8 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @conversation = Conversation.first_or_create!(conversation_params)
-    redirect_to conversation_message_path
+    @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first_or_create!(conversation_params)
+    redirect_to conversation_messages_path(@conversation)
   end
 
   private
