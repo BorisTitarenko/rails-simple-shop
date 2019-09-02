@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :current_cart
 
   def index
-    @orders = current_user.orders.where.not(token: current_cart.token )
+    @orders = current_user.orders.where.not(token: current_cart.token)
   end
 
   def checkout
@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
     @order = current_cart.order
     if @order.update_attributes!(order_params.merge(status: 'open'))
       redirect_to root_path
+      session[:cart_token] = nil
     else
       render "/new"
     end

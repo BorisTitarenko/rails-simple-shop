@@ -1,5 +1,9 @@
 class CurrentCart
 
+  def nil_session
+    session[:cart_token] = nil
+  end
+
   def initialize(token: token, user_id: user_id)
     @token = token
     @user_id = user_id

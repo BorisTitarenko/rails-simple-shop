@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+
   has_many :order_items
   belongs_to :user
 
@@ -9,6 +10,6 @@ class Order < ApplicationRecord
     self.order_items.each do |o|
       o.instrument.update_attributes(status: "waiting")
     end
-    session[:cart_token] = nil
+
   end
 end
