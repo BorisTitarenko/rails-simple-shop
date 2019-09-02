@@ -16,13 +16,13 @@ class CurrentCart
   def order
     @order ||= Order.find_or_create_by(token: @token, user_id: @user_id) do |o|
       o.sub_total = 0
-      o.status = 'empty'
+      o.empty!
     end
   end
 
   def add_instrument(instrument_id)
     instrument = Instrument.find(instrument_id)
-    instrument.update!(status: 'in cart')
+    instrument.in_cart!
 
     order.order_items.create(instrument_id: instrument_id, price: instrument.price)
     update_sub_total!

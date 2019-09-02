@@ -6,7 +6,7 @@ class SalesController < ApplicationController
   def update
     instrument = current_user.instruments.find(params[:id])
       if instrument
-        instrument.update_attributes!(status: 'sold out')
+        instrument.sold_out!
         redirect_to "/"
       end
   end
@@ -14,7 +14,7 @@ class SalesController < ApplicationController
   def destroy
     instrument = current_user.instruments.find(params[:id])
     if instrument
-      instrument.update_attributes!(status: 'active')
+      instrument.active!
       redirect_to "/"
     end
   end

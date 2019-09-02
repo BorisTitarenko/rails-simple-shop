@@ -3,16 +3,16 @@ class OrderItem < ApplicationRecord
   belongs_to :order
 
   after_create do
-    if self.order.status == 'empty'
-      self.order.update_attributes(status: 'cart')
+    if self.order.empty?
+      self.order.cart!
     end
   end
 
 
   after_destroy do
-    self.instrument.update_attributes!(status: 'active')
+    self.instrument.active!
     if OrderItem.where(order_id: self.order_id).empty?
-      self.order.update_attributes(status: 'empty')
+      self.order.empty!
     end
   end
 

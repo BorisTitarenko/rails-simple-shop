@@ -15,7 +15,7 @@ class InstrumentsController < ApplicationController
 
   def create
     @instrument = current_user.instruments.new(instrument_params)
-    @instrument.status = 'active'
+    @instrument.active!
     if @instrument.save
       redirect_to root_path
     else

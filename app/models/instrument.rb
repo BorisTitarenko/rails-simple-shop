@@ -1,4 +1,6 @@
 class Instrument < ApplicationRecord
+  enum status: {active: 'active', in_cart: 'in cart', waiting: 'waiting', sold_out: 'sold out'}
+
   belongs_to :user, optional: true
   has_one_attached :image
   has_one :order_item, dependent: :destroy
