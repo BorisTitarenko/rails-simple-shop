@@ -18,4 +18,7 @@ Rails.application.routes.draw do
 
   resources :order_items, path: "users/cart/"
 
+  resources :conversations do
+    resources :messages
+  end
 end

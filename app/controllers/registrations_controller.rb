@@ -1,7 +1,13 @@
 load "current_cart"
 class RegistrationsController < Devise::RegistrationsController
   include SetCart
-  before_action :current_cart
+
+  protected
+
+  def sign_up(_resource_name, user)
+    super
+    current_cart
+  end
 
   private
 

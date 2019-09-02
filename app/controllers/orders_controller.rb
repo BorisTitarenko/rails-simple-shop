@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :current_cart
 
   def index
-    @orders = Order.where.not(token: current_cart.token)
+    @orders = current_user.orders.where.not(token: current_cart.token )
   end
 
   def checkout

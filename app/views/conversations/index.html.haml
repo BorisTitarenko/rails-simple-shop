@@ -1,0 +1,14 @@
+
+%h3 Conversations
+- @conversations.each do |conversation|
+  .row
+    .col-md
+      - if current_user.id == conversation.recipient_id || current_user.id == conversation.sender_id
+        - if conversation.sender_id == current_user.id
+          - recipient = User.find(conversation.recipient_id)
+        - else conversation.recipient_id
+          - recipient = User.find(conversation.sender_id)
+        .d-inline-block.nudge-down-10
+          = gravatar_image_tag(recipient.email, class: "rounded-circle")
+        .d-inline-block
+          = link_to "#{recipient.name}", conversation_messages_path(conversation)

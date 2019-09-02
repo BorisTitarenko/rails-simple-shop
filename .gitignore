@@ -8,7 +8,6 @@
 /.bundle
 *.jpg
 
-
 .idea/workspace.xml
 
 # Ignore all logfiles and tempfiles.

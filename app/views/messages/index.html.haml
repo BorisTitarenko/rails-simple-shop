@@ -1,0 +1,19 @@
+%h1.title
+  Message #{@conversation.recipient.name}
+%section#messages.mb4
+  - @messages.each do |message|
+    - if message.body
+      - user = User.find(message.user_id)
+      %article.message
+        .message-body
+          .inline-block.nudge-down-10.pr2= gravatar_image_tag( user.email, class: "rounded-circle")
+          .inline-block
+            %strong= user.name
+            = message.message_time
+          .block.pt4
+            .f4= sanitize markdown_to_html(message.body)
+= form_for [@conversation, @message] do |f|
+  = f.text_area :body, class: "textarea", placeholder: "Inquire about a trade..."
+  = f.text_field :user_id, value: current_user.id, type: "hidden"
+  .text-align-right
+    = f.submit "Send message"

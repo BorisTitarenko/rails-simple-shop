@@ -33,6 +33,9 @@ gem 'bootstrap'
 gem 'devise'
 gem 'gravatar_image_tag'
 gem 'haml', '~> 5.0'
+
+gem 'sidekiq'
+gem 'kramdown'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

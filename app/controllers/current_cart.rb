@@ -16,10 +16,6 @@ class CurrentCart
     end
   end
 
-  def count
-    order.order_items.count
-  end
-
   def add_instrument(instrument_id)
     instrument = Instrument.find(instrument_id)
     instrument.update!(status: 'in cart')
@@ -41,7 +37,6 @@ class CurrentCart
     order.update_attributes!(sub_total: order.order_items.sum(:price))
   end
 
-
 end
 
 
@@ -57,7 +52,7 @@ module SetCart
   end
 
   def cart_token
-    return @cart_token unless @cart_token.nil?
+    return session[:cart_token] if session[:cart_token]
     session[:cart_token] ||= SecureRandom.hex(8)
     return @cart_token = session[:cart_token]
   end
